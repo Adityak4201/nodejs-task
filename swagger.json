@@ -5,7 +5,7 @@
       "title": "Magic Step Internship Task",
       "description": "Backend API for Magic Step Internship, Handles MongoDB data"
     },
-    "host": "4000-silver-marmoset-avzw1n1i.ws-us15.gitpod.io",
+    "host": "magicstep-backend.herokuapp.com",
     "basePath": "/api",
     "paths": {
       "/auth/register": {
