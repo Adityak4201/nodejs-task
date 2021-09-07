@@ -1,0 +1,255 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "0.1.0",
+      "title": "Magic Step Internship Task",
+      "description": "Backend API for Magic Step Internship, Handles MongoDB data"
+    },
+    "host": "4000-silver-marmoset-avzw1n1i.ws-us15.gitpod.io",
+    "basePath": "/api",
+    "paths": {
+      "/auth/register": {
+        "post": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Register the user",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "required": [
+                  "email"
+                ],
+                "$ref": "#/definitions/User"
+              },
+              "examples": {
+                "application/json": {
+                  "_id": "60b5ae5f9542ebd58c273d84",
+                  "email": "name@email.com",
+                  "name": "John Doe",
+                  "date":"2021-09-07T00:00:00.000Z",
+                  "task":"Internship",
+                  "createdAt": "2021-06-01T03:49:51.501Z",
+                  "updatedAt": "2021-06-01T03:49:51.501Z",
+                  "__v": 0
+                }
+              }
+            },
+            "400": {
+              "description": "BAD BODY",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            },
+            "402": {
+              "description": "User Already Exists",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "Register Body",
+              "in": "body",
+              "description": "Form Body for User Registration",
+              "schema": {
+                "type": "object",
+                "$ref": "#/definitions/UserRegisterInput",
+                "example": {
+                  "email": "name@email.com",
+                  "name": "John Doe",
+                  "date":"2021-09-07",
+                  "task":"Something"
+                }
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ]
+        }
+      },
+      "/auth/updateProfile": {
+        "post": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Update the Profile of the user",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "required": [
+                  "email"
+                ],
+                "$ref": "#/definitions/User"
+              },
+              "examples": {
+                "application/json": {
+                    "user":{
+                  "_id": "60b5ae5f9542ebd58c273d84",
+                  "email": "name@email.com",
+                  "name": "John Doe",
+                  "date":"2021-09-07T00:00:00.000Z",
+                  "task":"Internship",
+                  "createdAt": "2021-06-01T03:49:51.501Z",
+                  "updatedAt": "2021-06-01T03:49:51.501Z",
+                  "__v": 0
+                }
+              }
+            }
+            },
+            "400": {
+              "description": "BAD BODY",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            },
+            "402": {
+              "description": "User Not Found",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "Update Profile Body",
+              "in": "body",
+              "description": "Form Body for Updating User Profile",
+              "schema": {
+                "type": "object",
+                "$ref": "#/definitions/UserRegisterInput",
+                "example": {
+                  "email": "name@email.com",
+                  "name": "John Doe",
+                  "date":"2021-09-07",
+                  "task":"Something"
+                }
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ]
+        }
+      },
+      "/auth/getUsers": {
+        "get": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Fetches Data from MongoDB and serves it",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "properties": {
+                  "_id": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "string",
+                    "format":"date"
+                  },
+                  "task": {
+                    "type": "string"
+                  },
+                  "createdAt": {
+                    "type": "string",
+                    "format":"date-time"
+                  },
+                  "updatedAt": {
+                    "type": "string",
+                    "format":"date-time"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "User": {
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Stores MongoDB id"
+          },
+          "email": {
+            "type": "string",
+            "description": "Stores Email of the user"
+          },
+          "name": {
+            "type": "string",
+            "description": "Stores Name of the user"
+          },
+          "date":{
+            "type":"string",
+            "description":"Stores date",
+            "format":"date"
+          },
+          "task": {
+            "type":"string",
+            "description":"Stores task of the user"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        }
+      },
+      "UserRegisterInput": {
+        "required": [
+         "email"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "Stores Email of the User"
+          },
+          "name": {
+            "type": "string",
+            "description": "Stores Name of the User"
+          },
+          "date": {
+            "type": "string",
+            "description": "Stores Date",
+            "format":"date"
+          },
+          "task": {
+            "type": "string",
+            "description": "Stores Task"
+          }
+        }
+      },
+      "Error": {
+        "properties": {
+          "errors": {
+            "type": "string",
+            "description": "Gives detail of error"
+          }
+        }
+      }
+    },
+    "schemes": [
+      "https"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ]
+  }
