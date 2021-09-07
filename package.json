@@ -1,0 +1,32 @@
+{
+  "name": "nodejs-task",
+  "version": "1.0.0",
+  "description": "NodeJS Task of Magic Step Internship",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adityak4201/nodejs-task.git"
+  },
+  "keywords": [
+    "NodeJS",
+    "api",
+    "internship",
+    "task"
+  ],
+  "author": "Aditya Khandelwal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Adityak4201/nodejs-task/issues"
+  },
+  "homepage": "https://github.com/Adityak4201/nodejs-task#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.12.1",
+    "mongoose": "^6.0.5",
+    "nodemon": "^2.0.12"
+  }
+}
